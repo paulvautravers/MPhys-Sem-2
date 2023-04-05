@@ -1,0 +1,47 @@
+See LICENCE.txt in DaMaRiS directory for licences and disclaimers
+
+## ---------------------------- Geometry ------------------------------------ ##
+d:Ge/World/HLX= 10. um
+d:Ge/World/HLY= 10. um
+d:Ge/World/HLZ= 10. um
+s:Ge/World/Material ="G4_WATER"
+
+s:Ge/Target/Parent = "World"
+s:Ge/Target/Type = "TsSphere"
+s:Ge/Target/Material = "G4_WATER"
+d:Ge/Target/RMin                 = 0 mm
+d:Ge/Target/RMax                 = 6.5 um
+d:Ge/Target/SPhi                 = 0 deg
+d:Ge/Target/DPhi                 = 360 deg
+d:Ge/Target/STheta               = 0 deg
+d:Ge/Target/DTheta               = 180 deg
+
+## ---------------------------- Beam ---------------------------------------- ##
+s:So/Demo/Type = "Beam"
+s:So/Demo/BeamParticle = "geantino"
+i:So/Demo/NumberOfHistoriesInRun = 1
+
+## --------------------------- General -------------------------------------  ##
+#@@@@ DaMaRiS is only single threaded.
+i:Ts/NumberOfThreads = 1
+sv:Ph/Default/Modules = 2 "g4em-dna" "DrEmDNAChemistry"
+i:Ts/ChemistryVerbosity = 1
+includeFile = TOPASChemistry.txt
+includeFile = motion.txt
+includefile = pathwayNHEJ.txt
+b:Ch/DaMaRiS/Bool_DaMaRiS = "True"
+s:Ch/ChemistryName = "DaMaRiS"
+b:Ch/DaMaRiS/ChemicalTransportActive = "True"
+i:Ts/Seed = 12345
+
+## ------------------------- DaMaRiS User Settings ----------------------------- ##
+i:Ch/DaMaRiS/AlternativeRunID = 125
+i:Ch/DaMaRiS/BiologyRepeatNumber = 3
+d:Ch/DaMaRiS/DaMaRiSStageTimeEnd = 86400 s
+#d:Ch/DaMaRiS/DaMaRiSStageTimeEnd = 600 s
+d:Ch/DaMaRiS/ObserveDurationForMSD = 0 s
+d:Ch/DaMaRiS/ObserveStepSizeForMSD = 1 s
+d:Ch/DaMaRiS/BoundingCellOrNucleusRadius = Ge/Target/RMax um
+s:Ch/DaMaRiS/STDFormatDamageFileName = "12_5_proton.sdd"
+i:Ch/DaMaRiS/SelectFromExposureNumber = -1
+b:Ch/DaMaRiS/TurnOffTime = "True"
